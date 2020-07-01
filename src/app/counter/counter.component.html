@@ -1,0 +1,66 @@
+<h1 *rxLet="vm$; let vm">{{vm.title}}</h1>
+
+<form [formGroup]="counterForm">
+
+<div class="countdownHolder">
+  <span class="position" *ngFor="let d of (vm$ | push).count | toArray">
+    <span class="digit static">
+      {{d}}
+    </span>
+  </span>
+</div>
+
+<button type="button"
+  (click)="isTickingChange$.next(true)">
+  Start
+</button>
+
+<button type="button"
+  (click)="isTickingChange$.next(false)">
+  Pause
+</button>
+
+<br/>
+
+<button type="button"
+    (click)="this.btnSetToClick$.next($event)">
+  Set To
+</button>
+
+<input
+  type="number" min=0
+  [formControlName]="'count'"/>
+
+<button type="button"
+  (click)="resetClick$.next()">
+  Reset
+</button>
+
+<br/>
+
+<button type="button"
+  (click)="countUpChange$.next(true)">
+  Count Up
+</button>
+
+<button type="button"
+  (click)="countUpChange$.next(false)">
+  Count Down
+</button>
+
+<br/>
+
+<label>
+  Tick Speed
+</label>
+<input
+  type="number" min=0
+  [formControlName]="'tickSpeed'"/>
+<label>
+  Count Diff
+</label>
+<input 
+  type="number" min=0
+  [formControlName]="'countDiff'"/>
+
+</form>
